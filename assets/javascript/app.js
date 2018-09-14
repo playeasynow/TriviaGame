@@ -1,92 +1,79 @@
+// ------------------- global variables ------------------- //
+// created html element variable, score, sounds
+var gameHTML;
+var theTimer;
+var counter = 10;
+var questionCounter = 0;
+var correctTally = 0;
+var incorrectTally = 0;
+var timeOutTally = 0;
+var clickSound = new Audio("./assets/images/refreshedSound.mp3");
+
+// questions, answers, images arrays
+var questionArray = ["Question 1?", "Question 2?", "Question 3?", "Question 4?", "Question 5?", "Question 6?", "Question 7?", "Question 8?"];
+var answerArray = [["Q1A1", "Q1A2", "Q1A3", "Q1A4"], ["Q2A1", "Q2A2", "Q2A3", "Q2A4"], ["Q3A1", "Q3A2", "Q3A3", "Q3A4"], ["Q4A1", "Q4A2", "Q4A3", "Q4A4"], ["Q5A1", "Q5A2", "Q5A3", "Q5A4"], ["Q6A1", "Q6A2", "Q6A3", "Q6A4"], ["Q7A1", "Q7A2", "Q7A3", "Q7A4"], ["Q8A1", "Q8A2", "Q8A3", "Q8A4"]];
+var correctAnswers = ["Q1A1", "Q2A2", "Q3A3", "Q4A3", "Q5A4", "Q6A1", "Q7A2", "Q8A4"];
+var imageArray = ["<img class='center-SVG' src='.//assets/images/Q1'>", "<img class='center-SVG' src='.//assets/images/Q2'>", "<img class='center-block img-right' src='img/taiwan.png'>", "<img class='center-block img-right' src='img/japan.png'>", "<img class='center-block img-right' src='img/china.png'>", "<img class='center-block img-right' src='img/turkey.png'>", "<img class='center-block img-right' src='img/colombia.png'>", "<img class='center-block img-right' src='img/india.png'>"];
+
+// ------------------- jQuery functions and onclick listeners and events ------------------- //
 $(document).ready(function () {
     // function that creates the begin button and beginning screen
 
-    function beginScreen() {
-        startScreen = "<p class='text-center main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
-        $(".mainArea").html(startScreen);
+    function beginButton() {
+        beginButton = "<img class='begin-button' src='.//assets/images/beginText.svg'>"
+        // "<a class='btn btn-lg btn-block begin-button text-left animated zoomInLeft' href='#' role='button'>click me to begin</a>"
+        $(".main-area").html(beginButton);
     }
+    beginButton();
 
-    beginScreen();
-
-    //Create a function, generateHTML(), that is triggered by the start button, and generates the HTML seen on the project video...
-
-    $("body").on("click", ".start-button", function (event) {
+    // trigger functions by clicking the start button, and generate the HTML i.e. trivia questions
+    $("body").on("click", ".begin-button", function (event) {
         event.preventDefault();  // added line to test issue on GitHub Viewer
         clickSound.play();
-        generateHTML();
-
+        generateTrivia();
         timerWrapper();
+    });
 
-    }); // Closes start-button click
-
+    // trigger functions by clicking an answer
     $("body").on("click", ".answer", function (event) {
-        //answeredQuestion = true;
         clickSound.play();
         selectedAnswer = $(this).text();
         if (selectedAnswer === correctAnswers[questionCounter]) {
-            //alert("correct");
-
-            clearInterval(theClock);
+            // if correct
+            clearInterval(theTimer);
             generateWin();
         }
         else {
-            //alert("wrong answer!");
-            clearInterval(theClock);
+            // if incorrect
+            clearInterval(theTimer);
             generateLoss();
         }
-    }); // Close .answer click
+    });
 
+    // trigger functions by clicking reset button
     $("body").on("click", ".reset-button", function (event) {
         clickSound.play();
         resetGame();
-    }); // Closes reset-button click
+    });
 
-});  //  Closes jQuery wrapper
+});
 
-function generateLossDueToTimeOut() {
-    unansweredTally++;
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
-    $(".mainArea").html(gameHTML);
-    setTimeout(wait, 4000);  //  change to 4000 or other amount
+// ------------------- javascript functions ------------------- //
+
+// create variable named gameHTML with html element holding trivia question, and then display it on HTML
+function generateTrivia() {
+    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>30</span></p><p class='text-center'>" + questionArray[questionCounter] + "</p><p class='first-answer answer animated bounceInRight'>" + answerArray[questionCounter][0] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][1] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][2] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][3] + "</p>";
+    $(".main-area").html(gameHTML);
+    $("#logo").html("");
 }
 
-function generateWin() {
-    correctTally++;
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
-    $(".mainArea").html(gameHTML);
-    setTimeout(wait, 4000);  //  change to 4000 or other amount
-}
-
-function generateLoss() {
-    incorrectTally++;
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
-    $(".mainArea").html(gameHTML);
-    setTimeout(wait, 4000); //  change to 4000 or other amount
-}
-
-function generateHTML() {
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>30</span></p><p class='text-center'>" + questionArray[questionCounter] + "</p><p class='first-answer answer'>A. " + answerArray[questionCounter][0] + "</p><p class='answer'>B. " + answerArray[questionCounter][1] + "</p><p class='answer'>C. " + answerArray[questionCounter][2] + "</p><p class='answer'>D. " + answerArray[questionCounter][3] + "</p>";
-    $(".mainArea").html(gameHTML);
-}
-
-function wait() {
-    if (questionCounter < 7) {
-        questionCounter++;
-        generateHTML();
-        counter = 30;
-        timerWrapper();
-    }
-    else {
-        finalScreen();
-    }
-}
-
+// create variable with timer function, and then display it on HTML
 function timerWrapper() {
-    theClock = setInterval(thirtySeconds, 1000);
+    theTimer = setInterval(thirtySeconds, 1000);
     function thirtySeconds() {
         if (counter === 0) {
-            clearInterval(theClock);
-            generateLossDueToTimeOut();
+            clearInterval(theTimer);
+            timeOutLoss();
         }
         if (counter > 0) {
             counter--;
@@ -95,32 +82,56 @@ function timerWrapper() {
     }
 }
 
-function finalScreen() {
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + unansweredTally + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
-    $(".mainArea").html(gameHTML);
+// replace gameHTML with new HTML element cointaining win image. hold screen for 3 seconds
+function generateWin() {
+    correctTally++;
+    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+    $(".main-area").html(gameHTML);
+    setTimeout(wait, 2000);  //  3 second wait
 }
 
+// replace gameHTML with new HTML element containing loss image. hold screen for 3 seconds
+function generateLoss() {
+    incorrectTally++;
+    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
+    $(".main-area").html(gameHTML);
+    setTimeout(wait, 2000); //  3 second wait
+}
+
+// replace gameHTML with new HTML element containing time-out image. hold the screen for 3 seconds
+function timeOutLoss() {
+    timeOutTally++;
+    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-SVG' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
+    $(".main-area").html(gameHTML);
+    setTimeout(wait, 2000);  //  3 second wait
+}
+
+// in between questions, update counters and run functions if there are questions left. if not, run the final screen function
+function wait() {
+    if (questionCounter < 7) {
+        questionCounter++;
+        generateTrivia();
+        counter = 10;
+        timerWrapper();
+    }
+    else {
+        finalScreen();
+    }
+}
+
+// replace gameHTML with new HTML element containing all-done text and reset button
+function finalScreen() {
+    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Nice work! Here's how you did:" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + timeOutTally + "</p>" + "<a class='btn btn-lg btn-block reset-button text-left animated zoomInLeft' href='#' role='button'>Reset The Quiz!</a>";
+    $(".main-area").html(gameHTML);
+}
+
+// reset the counters and start over game
 function resetGame() {
     questionCounter = 0;
     correctTally = 0;
     incorrectTally = 0;
-    unansweredTally = 0;
-    counter = 30;
-    generateHTML();
+    timeOutTally = 0;
+    counter = 10;
+    generateTrivia();
     timerWrapper();
 }
-
-var startScreen;
-var gameHTML;
-var counter = 30;
-var questionArray = ["What is the capital of Australia?", "What is the capital of Liberia?", "What is the capital of Taiwan?", "What is the capital of Japan?", "What is the capital of China?", "What is the capital of Turkey?", "What is the capital of Colombia?", "What is the capital of India?"];
-var answerArray = [["Canberra", "Melbourne", "Sydney", "Darwin"], ["Arthington", "Monrovia", "Tuzon", "Marshall"], ["Tainan City", "Taichung", "Taipei", "Hsinchu"], ["Kyoto", "Hiroshima", "Tokyo", "Osaka"], ["Hong Kong", "Macau", "Shanghai", "Beijing"], ["Ankara", "Istanbul", "Antalya", "Bursa"], ["Medellin", "Bogota", "Cartagena", "Cali"], ["Mumbai", "Hyderabad", "Bangalore", "New Delhi"]];
-var imageArray = ["<img class='center-block img-right' src='img/australia.png'>", "<img class='center-block img-right' src='img/liberia.png'>", "<img class='center-block img-right' src='img/taiwan.png'>", "<img class='center-block img-right' src='img/japan.png'>", "<img class='center-block img-right' src='img/china.png'>", "<img class='center-block img-right' src='img/turkey.png'>", "<img class='center-block img-right' src='img/colombia.png'>", "<img class='center-block img-right' src='img/india.png'>"];
-var correctAnswers = ["A. Canberra", "B. Monrovia", "C. Taipei", "C. Tokyo", "D. Beijing", "A. Ankara", "B. Bogota", "D. New Delhi"];
-var questionCounter = 0;
-var selecterAnswer;
-var theClock;
-var correctTally = 0;
-var incorrectTally = 0;
-var unansweredTally = 0;
-var clickSound = new Audio("sound/button-click.mp3");
