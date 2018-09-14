@@ -2,7 +2,7 @@
 // created html element variable, score, sounds
 var gameHTML;
 var theTimer;
-var counter = 10;
+var counter = 30;
 var questionCounter = 0;
 var correctTally = 0;
 var incorrectTally = 0;
@@ -10,10 +10,10 @@ var timeOutTally = 0;
 var clickSound = new Audio("./assets/images/refreshedSound.mp3");
 
 // questions, answers, images arrays
-var questionArray = ["Question 1?", "Question 2?", "Question 3?", "Question 4?", "Question 5?", "Question 6?", "Question 7?", "Question 8?"];
-var answerArray = [["Q1A1", "Q1A2", "Q1A3", "Q1A4"], ["Q2A1", "Q2A2", "Q2A3", "Q2A4"], ["Q3A1", "Q3A2", "Q3A3", "Q3A4"], ["Q4A1", "Q4A2", "Q4A3", "Q4A4"], ["Q5A1", "Q5A2", "Q5A3", "Q5A4"], ["Q6A1", "Q6A2", "Q6A3", "Q6A4"], ["Q7A1", "Q7A2", "Q7A3", "Q7A4"], ["Q8A1", "Q8A2", "Q8A3", "Q8A4"]];
-var correctAnswers = ["Q1A1", "Q2A2", "Q3A3", "Q4A3", "Q5A4", "Q6A1", "Q7A2", "Q8A4"];
-var imageArray = ["<img class='center-SVG' src='.//assets/images/Q1'>", "<img class='center-SVG' src='.//assets/images/Q2'>", "<img class='center-block img-right' src='img/taiwan.png'>", "<img class='center-block img-right' src='img/japan.png'>", "<img class='center-block img-right' src='img/china.png'>", "<img class='center-block img-right' src='img/turkey.png'>", "<img class='center-block img-right' src='img/colombia.png'>", "<img class='center-block img-right' src='img/india.png'>"];
+var questionArray = ["What was one of Victor Vasarely's most famous works?", "Question 2?", "Question 3?", "Question 4?", "Question 5?", "Question 6?", "Question 7?", "Question 8?"];
+var answerArray = [["Zebra (1937)", "Q1A2", "Q1A3", "Q1A4"], ["Q2A1", "Q2A2", "Q2A3", "Q2A4"], ["Q3A1", "Q3A2", "Q3A3", "Q3A4"], ["Q4A1", "Q4A2", "Q4A3", "Q4A4"], ["Q5A1", "Q5A2", "Q5A3", "Q5A4"], ["Q6A1", "Q6A2", "Q6A3", "Q6A4"], ["Q7A1", "Q7A2", "Q7A3", "Q7A4"], ["Q8A1", "Q8A2", "Q8A3", "Q8A4"]];
+var correctAnswers = ["Zebra (1937)", "Q2A2", "Q3A3", "Q4A3", "Q5A4", "Q6A1", "Q7A2", "Q8A4"];
+var imageArray = ["<img class='center-image' src='.//assets/images/victorVasarelyZebra.png'>", "<img class='center-image' src='.//assets/images/Q2'>", "<img class='center-block img-right' src='img/taiwan.png'>", "<img class='center-block img-right' src='img/japan.png'>", "<img class='center-block img-right' src='img/china.png'>", "<img class='center-block img-right' src='img/turkey.png'>", "<img class='center-block img-right' src='img/colombia.png'>", "<img class='center-block img-right' src='img/india.png'>"];
 
 // ------------------- jQuery functions and onclick listeners and events ------------------- //
 $(document).ready(function () {
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
 // create variable named gameHTML with html element holding trivia question, and then display it on HTML
 function generateTrivia() {
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>30</span></p><p class='text-center'>" + questionArray[questionCounter] + "</p><p class='first-answer answer animated bounceInRight'>" + answerArray[questionCounter][0] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][1] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][2] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][3] + "</p>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>30</span></p><p class='text-left question'>" + questionArray[questionCounter] + "</p><p class='first-answer answer animated bounceInRight'>" + answerArray[questionCounter][0] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][1] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][2] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][3] + "</p>";
     $(".main-area").html(gameHTML);
     $("#logo").html("");
 }
@@ -85,25 +85,27 @@ function timerWrapper() {
 // replace gameHTML with new HTML element cointaining win image. hold screen for 3 seconds
 function generateWin() {
     correctTally++;
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
     $(".main-area").html(gameHTML);
-    setTimeout(wait, 2000);  //  3 second wait
+    setTimeout(wait, 3000);  //  3 second wait
 }
 
 // replace gameHTML with new HTML element containing loss image. hold screen for 3 seconds
 function generateLoss() {
     incorrectTally++;
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
+    changeBackgroundColorLoss();
+    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "<br>" + "But here's a nice piece." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
     $(".main-area").html(gameHTML);
-    setTimeout(wait, 2000); //  3 second wait
+    setTimeout(wait, 3000); //  3 second wait
 }
 
 // replace gameHTML with new HTML element containing time-out image. hold the screen for 3 seconds
 function timeOutLoss() {
     timeOutTally++;
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-SVG' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
+    changeBackgroundColorLoss();
+    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-image' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
     $(".main-area").html(gameHTML);
-    setTimeout(wait, 2000);  //  3 second wait
+    setTimeout(wait, 3000);  //  3 second wait
 }
 
 // in between questions, update counters and run functions if there are questions left. if not, run the final screen function
@@ -111,7 +113,8 @@ function wait() {
     if (questionCounter < 7) {
         questionCounter++;
         generateTrivia();
-        counter = 10;
+        changeBackgroundColorBack();
+        counter = 30;
         timerWrapper();
     }
     else {
@@ -121,7 +124,7 @@ function wait() {
 
 // replace gameHTML with new HTML element containing all-done text and reset button
 function finalScreen() {
-    gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Nice work! Here's how you did:" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + timeOutTally + "</p>" + "<a class='btn btn-lg btn-block reset-button text-left animated zoomInLeft' href='#' role='button'>Reset The Quiz!</a>";
+    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Nice work! Here's how you did:" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + timeOutTally + "</p>" + "<a class='btn btn-lg btn-block reset-button text-left animated zoomInLeft' href='#' role='button'>Reset The Quiz!</a>";
     $(".main-area").html(gameHTML);
 }
 
@@ -131,7 +134,16 @@ function resetGame() {
     correctTally = 0;
     incorrectTally = 0;
     timeOutTally = 0;
-    counter = 10;
+    counter = 30;
     generateTrivia();
     timerWrapper();
 }
+
+// change background when you lose!!!!
+function changeBackgroundColorLoss() {
+    document.body.style.backgroundColor = "black";
+};
+
+function changeBackgroundColorBack() {
+    document.body.style.backgroundColor = "#320033";
+};

@@ -9,17 +9,32 @@ body {
 }
 
 .btn {
-    color: white;
+    color: #FF0000;
+}
+
+.timer-p {
+    font-size: 1vw;
+    margin-right: 10%;
+    margin-left: 75%;
+    text-align: center;
+}
+
+.question {
+    font-size: 3vw;
+    font-family: 'Varela Round';
+    font-weight: bold;
+    color: crimson;
 }
 
 .container {
-    margin-top: 8vw;
+    margin-top: 6vw;
     color: white;
     font-family: Helvetica;
     font-size: 2vw;
+    margin-left: 20vw;
 }
 
-.center-SVG {
+.center-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
