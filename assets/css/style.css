@@ -40,6 +40,10 @@ body {
     margin-right: auto;
 }
 
+.left-image {
+    display: block;
+}
+
 #logo {
     display: inline-block;
     position: relative;

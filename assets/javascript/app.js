@@ -10,17 +10,17 @@ var timeOutTally = 0;
 var clickSound = new Audio("./assets/images/refreshedSound.mp3");
 
 // questions, answers, images arrays
-var questionArray = ["What was one of Victor Vasarely's most famous works?", "Question 2?", "Question 3?", "Question 4?", "Question 5?", "Question 6?", "Question 7?", "Question 8?"];
-var answerArray = [["Zebra (1937)", "Q1A2", "Q1A3", "Q1A4"], ["Q2A1", "Q2A2", "Q2A3", "Q2A4"], ["Q3A1", "Q3A2", "Q3A3", "Q3A4"], ["Q4A1", "Q4A2", "Q4A3", "Q4A4"], ["Q5A1", "Q5A2", "Q5A3", "Q5A4"], ["Q6A1", "Q6A2", "Q6A3", "Q6A4"], ["Q7A1", "Q7A2", "Q7A3", "Q7A4"], ["Q8A1", "Q8A2", "Q8A3", "Q8A4"]];
-var correctAnswers = ["Zebra (1937)", "Q2A2", "Q3A3", "Q4A3", "Q5A4", "Q6A1", "Q7A2", "Q8A4"];
-var imageArray = ["<img class='center-image' src='.//assets/images/victorVasarelyZebra.png'>", "<img class='center-image' src='.//assets/images/Q2'>", "<img class='center-block img-right' src='img/taiwan.png'>", "<img class='center-block img-right' src='img/japan.png'>", "<img class='center-block img-right' src='img/china.png'>", "<img class='center-block img-right' src='img/turkey.png'>", "<img class='center-block img-right' src='img/colombia.png'>", "<img class='center-block img-right' src='img/india.png'>"];
+var questionArray = ["What was one of Victor Vasarely's most famous works?", "What was Jesús Rafael Soto's last work and installation?", "What's Ezequiel's favorite Yaacov Agam serigraph?", "What series did Josef Albers work on for 26 years until his death?", "Exemplifying the miminimalist movement, who coined the phrase, \"What you see is what you see?\"", "Blanton Museum of Art at UT Austin held whose work titled, Plus Reversed (1960)?", "Creator of another favorite, CINÉTICA DEL CÍRCULO (1968), how did Ernesto Briel Die?", "Which artist inspired Beach House's 7 visual album and artwork?"];
+var answerArray = [["Zebra (1937)", "Q1A2", "Q1A3", "Q1A4"], ["Q2A1", "Houston Penetrable (2014)", "Q2A3", "Q2A4"], ["Q3A1", "Q3A2", "Magic Rainbow (1981)", "Q3A4"], ["Q4A1", "Q4A2", "Homage to the Square (1967)", "Q4A4"], ["Q5A1", "Q5A2", "Q5A3", "Frank Stella"], ["Richard Anuszkiewicz", "Q6A2", "Q6A3", "Q6A4"], ["Q7A1", "AIDS-related complications", "Q7A3", "Q7A4"], ["Q8A1", "Q8A2", "Q8A3", "Bridget Riley"]];
+var correctAnswers = ["Zebra (1937)", "Houston Penetrable (2014)", "Magic Rainbow (1981)", "Homage to the Square (1967)", "Frank Stella", "Richard Anuszkiewicz", "AIDS-related complications", "Bridget Riley"];
+var imageArray = ["<img class='center-image' src='.//assets/images/victorVasarelyZebra.png'>", "<img class='center-image' src='.//assets/images/jesusRafaelSoto.gif'>", "<img class='center-image' height='400' src='.//assets/images/yaacovAgam.jpg'>", "<img class='center-image' height='400' src='.//assets/images/josefAlbers.jpg'>", "<img class='center-image' height='400' src='.//assets/images/frankStella.jpg'>", "<img class='center-image' height='400' src='.//assets/images/richardAnuszkiewicz.png'>", "<img class='center-image' src='.//assets/images/ernestoBriel.png'>", "<img class='center-image' height='400' src='.//assets/images/bridgetRiley.jpg'>"];
 
 // ------------------- jQuery functions and onclick listeners and events ------------------- //
 $(document).ready(function () {
     // function that creates the begin button and beginning screen
 
     function beginButton() {
-        beginButton = "<img class='begin-button' src='.//assets/images/beginText.svg'>"
+        beginButton = "<img class='begin-button' src='.//assets/images/beginText2.svg'>"
         // "<a class='btn btn-lg btn-block begin-button text-left animated zoomInLeft' href='#' role='button'>click me to begin</a>"
         $(".main-area").html(beginButton);
     }
@@ -84,7 +84,7 @@ function timerWrapper() {
 // replace gameHTML with new HTML element cointaining win image. hold screen for 3 seconds
 function generateWin() {
     correctTally++;
-    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
     $(".main-area").html(gameHTML);
     setTimeout(wait, 3000);  //  3 second wait
 }
@@ -93,7 +93,7 @@ function generateWin() {
 function generateLoss() {
     incorrectTally++;
     changeBackgroundColorLoss();
-    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "<br>" + "But here's a nice piece." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
+    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "<br>" + "But here's Bridget Riley's " + "<i>" + "Uneasy Centre" + "</i>" + ", 1963 [close-up]." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
     $(".main-area").html(gameHTML);
     setTimeout(wait, 3000); //  3 second wait
 }
@@ -102,7 +102,7 @@ function generateLoss() {
 function timeOutLoss() {
     timeOutTally++;
     changeBackgroundColorLoss();
-    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-image' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
+    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='left-image' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
     $(".main-area").html(gameHTML);
     setTimeout(wait, 3000);  //  3 second wait
 }
@@ -139,10 +139,56 @@ function resetGame() {
 }
 
 // change background when you lose!!!!
-function changeBackgroundColorLoss() {
-    document.body.style.backgroundColor = "black";
-};
 
 function changeBackgroundColorBack() {
     document.body.style.backgroundColor = "#320033";
 };
+
+function changeBackgroundColorLoss() {
+    document.body.style.backgroundColor = "black";
+};
+
+// ------------------- object attempt ------------------- //
+
+// let questions = [{
+//     // include things that are unique
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }, {
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }, {
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }, {
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }, {
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }, {
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }, {
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }, {
+//     question: "",
+//     choices: ["",],
+//     image: "",
+//     correctChoice: ""
+// }]
