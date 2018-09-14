@@ -64,7 +64,6 @@ $(document).ready(function () {
 function generateTrivia() {
     gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>30</span></p><p class='text-left question'>" + questionArray[questionCounter] + "</p><p class='first-answer answer animated bounceInRight'>" + answerArray[questionCounter][0] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][1] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][2] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][3] + "</p>";
     $(".main-area").html(gameHTML);
-    $("#logo").html("");
 }
 
 // create variable with timer function, and then display it on HTML
