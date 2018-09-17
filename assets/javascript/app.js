@@ -11,7 +11,7 @@ var clickSound = new Audio("./assets/images/refreshedSound.mp3");
 
 // questions, answers, images arrays
 var questionArray = ["What was one of Victor Vasarely's most famous works?", "What was Jesús Rafael Soto's last work and installation?", "What's Ezequiel's favorite Yaacov Agam serigraph?", "What series did Josef Albers work on for 26 years until his death?", "Exemplifying the miminimalist movement, who coined the phrase, \"What you see is what you see?\"", "Blanton Museum of Art at UT Austin held whose work titled, Plus Reversed (1960)?", "Creator of another favorite, CINÉTICA DEL CÍRCULO (1968), how did Ernesto Briel Die?", "Which artist inspired Beach House's 7 visual album and artwork?"];
-var answerArray = [["Zebra (1937)", "Q1A2", "Q1A3", "Q1A4"], ["Q2A1", "Houston Penetrable (2014)", "Q2A3", "Q2A4"], ["Q3A1", "Q3A2", "Magic Rainbow (1981)", "Q3A4"], ["Q4A1", "Q4A2", "Homage to the Square (1967)", "Q4A4"], ["Q5A1", "Q5A2", "Q5A3", "Frank Stella"], ["Richard Anuszkiewicz", "Q6A2", "Q6A3", "Q6A4"], ["Q7A1", "AIDS-related complications", "Q7A3", "Q7A4"], ["Q8A1", "Q8A2", "Q8A3", "Bridget Riley"]];
+var answerArray = [["Zebra (1937)", "Movement in Squares (1961)", "Transchromie (2007)", "Cataract 3 (1967)"], ["Bora III (1964)", "Houston Penetrable (2014)", "Ambientación Cromática (2007)", "Fire and Water Fountain (1986)"], ["Circle of Peace (1980)", "End to End (1971)", "Magic Rainbow (1981)", "Woman (unknown)"], ["Ives-Sillman Vice Versa II (1971)", "Fenced (1944)", "Homage to the Square (1967)", "Prefatio (1942)"], ["Josef Albers", "Bridget Riley", "Ernesto Briel", "Frank Stella"], ["Richard Anuszkiewicz", "Victor Vasarely", "Frank Stella", "Jesús Rafael Soto"], ["Plane crash", "AIDS-related complications", "Cancer", "Dehydration"], ["Eduardo Mac Entyre", "Alberto Biasi", "Ana Sacerdote", "Bridget Riley"]];
 var correctAnswers = ["Zebra (1937)", "Houston Penetrable (2014)", "Magic Rainbow (1981)", "Homage to the Square (1967)", "Frank Stella", "Richard Anuszkiewicz", "AIDS-related complications", "Bridget Riley"];
 var imageArray = ["<img class='center-image' src='.//assets/images/victorVasarelyZebra.png'>", "<img class='center-image' src='.//assets/images/jesusRafaelSoto.gif'>", "<img class='center-image' height='400' src='.//assets/images/yaacovAgam.jpg'>", "<img class='center-image' height='400' src='.//assets/images/josefAlbers.jpg'>", "<img class='center-image' height='400' src='.//assets/images/frankStella.jpg'>", "<img class='center-image' height='400' src='.//assets/images/richardAnuszkiewicz.png'>", "<img class='center-image' src='.//assets/images/ernestoBriel.png'>", "<img class='center-image' height='400' src='.//assets/images/bridgetRiley.jpg'>"];
 
@@ -84,7 +84,7 @@ function timerWrapper() {
 // replace gameHTML with new HTML element cointaining win image. hold screen for 3 seconds
 function generateWin() {
     correctTally++;
-    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
     $(".main-area").html(gameHTML);
     setTimeout(wait, 3000);  //  3 second wait
 }
@@ -93,7 +93,7 @@ function generateWin() {
 function generateLoss() {
     incorrectTally++;
     changeBackgroundColorLoss();
-    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "<br>" + "But here's Bridget Riley's " + "<i>" + "Uneasy Centre" + "</i>" + ", 1963 [close-up]." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "<br>" + "But here's Bridget Riley's " + "<i>" + "Uneasy Centre" + "</i>" + ", 1963 [close-up]." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
     $(".main-area").html(gameHTML);
     setTimeout(wait, 3000); //  3 second wait
 }
@@ -102,7 +102,7 @@ function generateLoss() {
 function timeOutLoss() {
     timeOutTally++;
     changeBackgroundColorLoss();
-    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='left-image' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='left-image' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
     $(".main-area").html(gameHTML);
     setTimeout(wait, 3000);  //  3 second wait
 }
@@ -123,7 +123,7 @@ function wait() {
 
 // replace gameHTML with new HTML element containing all-done text and reset button
 function finalScreen() {
-    gameHTML = "<p class='text-right timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Nice work! Here's how you did:" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + timeOutTally + "</p>" + "<a class='btn btn-lg btn-block reset-button text-left animated zoomInLeft' href='#' role='button'>Reset The Quiz!</a>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Nice work! Here's how you did:" + "</p>" + "<p class='summary-correct'>Correct Answers: " + correctTally + "</p>" + "<p>Wrong Answers: " + incorrectTally + "</p>" + "<p>Unanswered: " + timeOutTally + "</p>" + "<a class='btn btn-lg btn-block reset-button text-left animated zoomInLeft' href='#' role='button'>Reset The Quiz!</a>";
     $(".main-area").html(gameHTML);
 }
 
