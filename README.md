@@ -1,4 +1,4 @@
-# Op Art Trivia :cyclone: :wavy_dash: :cyclone:
+# Op Art Trivia :cyclone: :cyclone:
 UT Austin Coding Bootcamp | Unit 5 jQuery timer trivia game \
 [https://playeasynow.github.io/TriviaGame/](https://playeasynow.github.io/TriviaGame/) \
 v1.0 \
