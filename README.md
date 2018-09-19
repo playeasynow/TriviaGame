@@ -12,21 +12,18 @@ My approach to each activity is to build something that will teach me something 
 
 Here's how it works:
 
-- The game starts when the player chooses a character by clicking on a dog's picture. The player will fight as that dog for the rest of the game.
-- The player must then defeat all of the remaining dogs. Enemy dogs will be moved to the bottom of the screen.
-- The player chooses an opponent by clicking on an enemy dog's picture.
-- Once the player selects an opponent, that enemy dog is moved to the defender area.
-- The player will now be able to click the attack button.
-  - Whenever the player clicks attack, their dog damages the defender. The opponent will lose HP (health points). These points are displayed at the bottom of the defender's picture.
-  - The opponent dog will instantly counter the attack. When that happens, the player's dog will lose some of their HP. These points are shown at the bottom of the player dog's picture.
-- The player will keep hitting the attack button in an effort to defeat their opponent.
-  - When the defender's HP is reduced to zero or below, the enemy dog will be removed from the defender area. The player dog can now choose a new opponent.
-- The player wins the game by defeating all enemy dogs. The player loses the game if their dog's HP falls to zero or below.
+- Click on "begin" to start the timed questions. You have 30 seconds to answer each question.
+- If the player selects the correct answer, you'll see the winning screen. After a 3 seconds, you'll automatically proceed to the next question -- without user input.
+- The scenario is similar for wrong answers and time-outs.
+- If you run out of time, you'll be told and then see the correct answer. Wait 3 seconds, then you'll see the next question.
+- If you choose the wrong answer, you'll be told and then see the correct answer. Wait 3 seconds, then you'll see the next question.
+- On the final screen, you'll be able to review the number of correct answers, incorrect answers, timed-out questions and an option to restart the game.
 - Have fun!
 
-The game uses basic jQuery methods, so is a fun way to practice your first RPG!
+The game uses basic jQuery methods and timers, so good for a great first run at timed games!
 
 # Built Utilizing: 
+SVG images and animations
 Bootstrap v4 - <https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css> \
 jQuery 3.x - <http://code.jquery.com/jquery-3.3.1.min.js> 
 
