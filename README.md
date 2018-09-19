@@ -23,7 +23,7 @@ Here's how it works:
 The game uses basic jQuery methods and timers, so good for a great first run at timed games!
 
 # Built Utilizing: 
-SVG images and animations
+SVG images and animations \
 Bootstrap v4 - <https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css> \
 jQuery 3.x - <http://code.jquery.com/jquery-3.3.1.min.js> 
 
