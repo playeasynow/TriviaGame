@@ -83,27 +83,27 @@ function timerWrapper() {
 // replace gameHTML with new HTML element cointaining win image. hold screen for 3 seconds
 function generateWin() {
     correctTally++;
-    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+    gameHTML = "<p class='timer-p animated infinite pulse'>time remaining<br><span class='timer'>" + counter + "</span></p>" + "<p class='right-answer text-center'>Correct! The answer is: <br>" + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
     $(".main-area").html(gameHTML);
-    setTimeout(wait, 3000);  //  3 second wait
+    setTimeout(wait, 5000);  //  5 second wait
 }
 
 // replace gameHTML with new HTML element containing loss image. hold screen for 3 seconds
 function generateLoss() {
     incorrectTally++;
     changeBackgroundColorLoss();
-    gameHTML = "<p class='timer-p animated infinite pulse'>time remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "<br>" + "But here's Bridget Riley's " + "<i>" + "Uneasy Centre" + "</i>" + ", 1963 [close-up]." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>time remaining<br><span class='timer'>" + counter + "</span></p>" + "<p class='wrong-answer text-left'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "<br><br>" + "But here's Bridget Riley's " + "<i>" + "Uneasy Centre" + "</i>" + ", 1963 [close-up]." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
     $(".main-area").html(gameHTML);
-    setTimeout(wait, 3000); //  3 second wait
+    setTimeout(wait, 5000); //  5 second wait
 }
 
 // replace gameHTML with new HTML element containing time-out image. hold the screen for 3 seconds
 function timeOutLoss() {
     timeOutTally++;
     changeBackgroundColorLoss();
-    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='left-image' height='300' width='300' src='.//assets/images/Stopwatch.svg'>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>time remaining<br><span class='timer'>" + counter + "</span></p>" + "<p class='ran-out text-left'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='left-image' src='.//assets/images/Stopwatch.svg'>";
     $(".main-area").html(gameHTML);
-    setTimeout(wait, 3000);  //  3 second wait
+    setTimeout(wait, 5000);  //  5 second wait
 }
 
 // in between questions, update counters and run functions if there are questions left. if not, run the final screen function

@@ -22,12 +22,12 @@ body {
 }
 
 .question {
-    font-size: 8vw;
+    font-size: 7vw;
     margin-left: -4vh;
     font-family: 'Varela Round';
     font-weight: bold;
     color: crimson;
-    text-align: center;
+    text-align: left;
 }
 
 .container {
@@ -40,12 +40,16 @@ body {
 
 .center-image {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 25vh;
+    margin-left: -2vh;
+    margin-top: 4vh;
+    width: 98%;
 }
 
 .left-image {
     display: block;
+    height: 30vh;
+    margin-left: -5vh;
 }
 
 #logo {
@@ -72,6 +76,32 @@ body {
     margin-top: 15vh;
 }
 
+.answer {
+    font-size: 2vh;
+    margin-left: -3vh;
+}
+
+.ran-out {
+    font-size: 2.5vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    text-align: center;
+    margin-left: -4vh;
+}
+
+.wrong-answer {
+    font-size: 2.5vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    text-align: center;
+    margin-left: -4vh;
+}
+
+.right-answer {
+    font-size: 2.5vh;
+    text-align: left;
+    margin-left: -4vh;
+}
 
   @media only screen and (max-width: 830px) {
     
