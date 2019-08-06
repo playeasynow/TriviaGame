@@ -1,6 +1,6 @@
 # Op Art Trivia :cyclone: :cyclone:
 UT Austin Coding Bootcamp | Unit 5 jQuery timer trivia game \
-[https://playeasynow.github.io/TriviaGame/](https://playeasynow.github.io/TriviaGame/) \
+[https://playeasynow.github.io/triviagame/](https://playeasynow.github.io/triviagame/) \
 v1.0 \
 Orig. Deployment - September 15, 2018
 
