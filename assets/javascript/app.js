@@ -2,7 +2,7 @@
 // created html element variable, score, sounds
 var gameHTML;
 var theTimer;
-var counter = 30;
+var counter = 3;
 var questionCounter = 0;
 var correctTally = 0;
 var incorrectTally = 0;
@@ -15,45 +15,48 @@ var answerArray = [["Zebra (1937)", "Movement in Squares (1961)", "Transchromie 
 var correctAnswers = ["Zebra (1937)", "Houston Penetrable (2014)", "Magic Rainbow (1981)", "Homage to the Square (1967)", "Frank Stella", "Richard Anuszkiewicz", "AIDS-related complications", "Bridget Riley"];
 var imageArray = ["<img class='center-image' src='.//assets/images/victorVasarelyZebra.png'>", "<img class='center-image' src='.//assets/images/jesusRafaelSoto.gif'>", "<img class='center-image' height='400' src='.//assets/images/yaacovAgam.jpg'>", "<img class='center-image' height='400' src='.//assets/images/josefAlbers.jpg'>", "<img class='center-image' height='400' src='.//assets/images/frankStella.jpg'>", "<img class='center-image' height='400' src='.//assets/images/richardAnuszkiewicz.png'>", "<img class='center-image' src='.//assets/images/ernestoBriel.png'>", "<img class='center-image' height='400' src='.//assets/images/bridgetRiley.jpg'>"];
 
+
 // ------------------- jQuery functions and onclick listeners and events ------------------- //
 $(document).ready(function () {
-    // function that creates the begin button and beginning screen
-    function beginButton() {
-        beginButton = "<img class='begin-button' id='begin' src='.//assets/images/beginText2.svg'>"
-        // "<a class='btn btn-lg btn-block begin-button text-left animated zoomInLeft' href='#' role='button'>click me to begin</a>"
-        $(".main-area").html(beginButton);
-    }
-    beginButton();
 
-    // trigger functions by clicking the start button, and generate the HTML i.e. trivia questions
-    $("body").on("click tap", ".begin-button", function (event) {
-        event.preventDefault();  // added line to test issue on GitHub Viewer
-        clickSound.play();
-        generateTrivia();
-        timerWrapper();
-    });
-
-    // trigger functions by clicking an answer
-    $("body").on("click tap", ".answer", function (event) {
-        clickSound.play();
-        selectedAnswer = $(this).text();
-        if (selectedAnswer === correctAnswers[questionCounter]) {
-            // if correct
-            clearInterval(theTimer);
-            generateWin();
+        // function that creates the begin button and beginning screen
+        function beginButton() {
+            beginButton = "<img class='begin-button' id='begin' src='.//assets/images/beginText2.svg'>"
+            // "<a class='btn btn-lg btn-block begin-button text-left animated zoomInLeft' href='#' role='button'>click me to begin</a>"
+            $(".main-area").html(beginButton);
         }
-        else {
-            // if incorrect
-            clearInterval(theTimer);
-            generateLoss();
-        }
-    });
+        beginButton();
 
-    // trigger functions by clicking reset button
-    $("body").on("click tap", ".reset-button", function (event) {
-        clickSound.play();
-        resetGame();
-    });
+        // trigger functions by clicking the start button, and generate the HTML i.e. trivia questions
+        $("body").on("click tap", ".begin-button", function (event) {
+            event.preventDefault();  // added line to test issue on GitHub Viewer
+            clickSound.play();
+            generateTrivia();
+            timerWrapper();
+        });
+
+        // trigger functions by clicking an answer
+        $("body").on("click tap", ".answer", function (event) {
+            clickSound.play();
+            selectedAnswer = $(this).text();
+            if (selectedAnswer === correctAnswers[questionCounter]) {
+                // if correct
+                clearInterval(theTimer);
+                generateWin();
+            }
+            else {
+                // if incorrect
+                clearInterval(theTimer);
+                generateLoss();
+            }
+        });
+
+        // trigger functions by clicking reset button
+        $("body").on("click tap", ".reset-button", function (event) {
+            clickSound.play();
+            resetGame();
+        });
+    
 
 });
 
@@ -146,48 +149,3 @@ function changeBackgroundColorBack() {
 function changeBackgroundColorLoss() {
     document.body.style.backgroundColor = "black";
 };
-
-// ------------------- object attempt ------------------- //
-
-// let questions = [{
-//     // include things that are unique
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }, {
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }, {
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }, {
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }, {
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }, {
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }, {
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }, {
-//     question: "",
-//     choices: ["",],
-//     image: "",
-//     correctChoice: ""
-// }]

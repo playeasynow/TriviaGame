@@ -13,29 +13,38 @@ body {
 }
 
 .timer-p {
-    font-size: 5vw;
+    font-size: 2vh;
     font-family: Helvetica;
-    margin-right: 10%;
+    margin-right: 5%;
     margin-left: 50%;
     margin-top: 7%;
     text-align: right;
 }
 
 .question {
-    font-size: 7vw;
-    margin-left: -4vh;
+    font-size: 3vh;
+    margin-left: -2vh;
     font-family: 'Varela Round';
     font-weight: bold;
     color: crimson;
     text-align: left;
 }
 
+.answer {
+    font-size: 3vh;
+    margin-left: -2vh;
+    padding-top: .5vh;
+    padding-bottom: .5vh;
+    margin-top: .5vh;
+    margin-bottom: .5vh;
+    z-index: 5;
+}
+
 .container {
-    margin-top: 6vw;
+    margin-top: 5vh;
     color: white;
     font-family: Helvetica;
-    font-size: 2vw;
-    margin-left: 16vw;
+    margin-left: 7vh;
 }
 
 .center-image {
@@ -72,18 +81,8 @@ body {
 
   #begin {
     height: 17vh;
-    margin-left: -8vh;
+    margin-left: -4vh;
     margin-top: 15vh;
-}
-
-.answer {
-    font-size: 2vh;
-    margin-left: -3vh;
-    padding-top: .5vh;
-    padding-bottom: .5vh;
-    margin-top: .5vh;
-    margin-bottom: .5vh;
-    z-index: 5;
 }
 
 .ran-out {
@@ -110,11 +109,10 @@ body {
 
   @media only screen and (max-width: 830px) {
     
+    
   }
 
   @media only screen and (max-width: 375px) {
 
-    #begin {
-        height: 150%;
-    }
+
   }
