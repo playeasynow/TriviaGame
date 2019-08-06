@@ -26,7 +26,7 @@ $(document).ready(function () {
     beginButton();
 
     // trigger functions by clicking the start button, and generate the HTML i.e. trivia questions
-    $("body").on("click", ".begin-button", function (event) {
+    $("body").on("click tap", ".begin-button", function (event) {
         event.preventDefault();  // added line to test issue on GitHub Viewer
         clickSound.play();
         generateTrivia();
@@ -34,7 +34,7 @@ $(document).ready(function () {
     });
 
     // trigger functions by clicking an answer
-    $("body").on("click", ".answer", function (event) {
+    $("body").on("click tap", ".answer", function (event) {
         clickSound.play();
         selectedAnswer = $(this).text();
         if (selectedAnswer === correctAnswers[questionCounter]) {
@@ -50,7 +50,7 @@ $(document).ready(function () {
     });
 
     // trigger functions by clicking reset button
-    $("body").on("click", ".reset-button", function (event) {
+    $("body").on("click tap", ".reset-button", function (event) {
         clickSound.play();
         resetGame();
     });
