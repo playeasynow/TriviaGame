@@ -18,9 +18,8 @@ var imageArray = ["<img class='center-image' src='.//assets/images/victorVasarel
 // ------------------- jQuery functions and onclick listeners and events ------------------- //
 $(document).ready(function () {
     // function that creates the begin button and beginning screen
-
     function beginButton() {
-        beginButton = "<img class='begin-button' src='.//assets/images/beginText2.svg'>"
+        beginButton = "<img class='begin-button' id='begin' src='.//assets/images/beginText2.svg'>"
         // "<a class='btn btn-lg btn-block begin-button text-left animated zoomInLeft' href='#' role='button'>click me to begin</a>"
         $(".main-area").html(beginButton);
     }
@@ -62,7 +61,7 @@ $(document).ready(function () {
 
 // create variable named gameHTML with html element holding trivia question, and then display it on HTML
 function generateTrivia() {
-    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>30</span></p><p class='text-left question'>" + questionArray[questionCounter] + "</p><p class='first-answer answer animated bounceInRight'>" + answerArray[questionCounter][0] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][1] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][2] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][3] + "</p>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>time remaining<br><span class='timer'>30</span></p><p class='question'>" + questionArray[questionCounter] + "</p><p class='first-answer answer animated bounceInRight'>" + answerArray[questionCounter][0] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][1] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][2] + "</p><p class='answer animated bounceInRight'>" + answerArray[questionCounter][3] + "</p>";
     $(".main-area").html(gameHTML);
 }
 
@@ -93,7 +92,7 @@ function generateWin() {
 function generateLoss() {
     incorrectTally++;
     changeBackgroundColorLoss();
-    gameHTML = "<p class='timer-p animated infinite pulse'>Time Remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "<br>" + "But here's Bridget Riley's " + "<i>" + "Uneasy Centre" + "</i>" + ", 1963 [close-up]." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
+    gameHTML = "<p class='timer-p animated infinite pulse'>time remaining <br><span class='timer'>" + counter + "</span></p>" + "<p class='text-left'>Wrong! The correct answer is: " + correctAnswers[questionCounter] + "<br>" + "But here's Bridget Riley's " + "<i>" + "Uneasy Centre" + "</i>" + ", 1963 [close-up]." + "</p>" + "<img class='center-block animated swing' height='300' src='.//assets/images/opArtfavicon.jpg'>";
     $(".main-area").html(gameHTML);
     setTimeout(wait, 3000); //  3 second wait
 }
