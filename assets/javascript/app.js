@@ -2,7 +2,7 @@
 // created html element variable, score, sounds
 var gameHTML;
 var theTimer;
-var counter = 3;
+var counter = 30;
 var questionCounter = 0;
 var correctTally = 0;
 var incorrectTally = 0;
